@@ -3,7 +3,7 @@ name: output-workflow
 on: issues
 
 jobs:
-  output-metadata:
+  output:
     runs-on: ubuntu-latest
     steps:
       - name: print metadata of github object

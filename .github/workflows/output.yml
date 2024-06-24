@@ -1,10 +1,8 @@
-name: output-workflow
-
+name: output context object
 on: issues
-
 jobs:
-  output:
+  output-metadata:
     runs-on: ubuntu-latest
     steps:
-      - name: print metadata of github object
+      - name: console event metadata
         run: echo "${{ toJSON(github.event) }}"

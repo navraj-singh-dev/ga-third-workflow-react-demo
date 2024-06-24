@@ -1,0 +1,57 @@
+name: deploy-workflow
+
+on: push
+
+jobs:
+  all-in-one: # in this approach all the build, test, lint happens in one job
+    runs-on: ubuntu-latest
+    steps:
+      - name: install nodejs
+        uses: actions/setup-node@v4
+      - name: get the code of repository
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: run linting
+        run: npm run lint
+      - name: run test
+        run: npm run test
+      - name: run build and simulate deploy
+        run: |
+          npm run build
+          echo "Deploying..."
+  lint: # from here each step like build, test, lint are separated in their separate jobs
+    runs-on: ubuntu-latest
+    steps:
+      - name: install nodejs
+        uses: actions/setup-node@v4
+      - name: get the code of repository
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: run linting
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install nodejs
+        uses: actions/setup-node@v4
+      - name: get the code of repository
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: run test
+        run: npm run test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install nodejs
+        uses: actions/setup-node@v4
+      - name: get the code of repository
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: run build and simulate deploy
+        run: |
+          npm run build
+          echo "Deploying..."

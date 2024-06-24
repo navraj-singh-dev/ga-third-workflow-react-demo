@@ -1,0 +1,10 @@
+name: output-workflow
+
+on: issues
+
+jobs:
+  output-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print metadata of github object
+        run: echo "${{toJson(github)}}"

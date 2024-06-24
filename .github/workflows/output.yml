@@ -1,8 +1,8 @@
-name: output context object
+name: Handle issues
 on: issues
 jobs:
-  output-metadata:
+  output-info:
     runs-on: ubuntu-latest
     steps:
-      - name: console event metadata
+      - name: Output event details
         run: echo "${{ toJSON(github.event) }}"
